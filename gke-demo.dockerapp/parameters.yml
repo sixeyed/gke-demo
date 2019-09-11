@@ -1,0 +1,5 @@
+guestbook-php:
+  port: 8080
+  replicas: 3
+redis-follower:
+  replicas: 2

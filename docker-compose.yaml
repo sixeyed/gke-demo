@@ -1,0 +1,19 @@
+version: "3.6"
+services:
+  guestbook-php:
+    build: guestbook-php
+    depends_on:
+    - redis-master
+    deploy:
+      replicas: 3
+    image: docker.io/sixeyed/guestbook-php
+    ports:
+    - 8080:80
+  redis-follower:
+    depends_on:
+    - redis-master
+    deploy:
+      replicas: 2
+    image: gcr.io/google_samples/gb-redisslave:v1
+  redis-master:
+    image: k8s.gcr.io/redis:e2e
